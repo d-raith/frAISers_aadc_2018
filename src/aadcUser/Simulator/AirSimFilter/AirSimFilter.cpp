@@ -2,22 +2,11 @@
 /******************************************************************************
  * Audi Autonomous Driving Cup 2018
  * Team frAIsers
- * AUTHOR: Fabien Jenne
- * 
- * AirSim filter implementation
- * 
 ******************************************************************************/
 
 #include "AirSimFilter.h"
 #include "ADTF3_OpenCV_helper.h"
-
-// ____________________________________________________________________________
-/* ADTF filter config */
-
 ADTF_PLUGIN(LABEL_AIRSIM_FILTER, AirSimFilter);
-
-// ____________________________________________________________________________
-/* implement the class */
 
 AirSimFilter::AirSimFilter() {
     RegisterPropertyVariable("Limit position update rate", m_propLimitPositionRefreshRate);
@@ -43,15 +32,11 @@ AirSimFilter::~AirSimFilter() {
 /* this function is triggered by the Runnable */
 tResult AirSimFilter::RunTrigger(tTimeStamp tmTimeOfActivation) {
     if (airsim_client_connected) {
-        // send control commands
         readControlInputPins();
         sendControlsToAirSim(control_value_speed, control_value_steering);
-
-        // image update
         if (!image_thread_running.load()) {
             try {
                 image_thread_running.store(true);
-                // pass reference, as method is a member function
                 airsim_image_thread = std::thread(
                     &AirSimFilter::writeNewestAirSimImage, this, tmTimeOfActivation);
                 airsim_image_thread.detach();
@@ -60,8 +45,6 @@ tResult AirSimFilter::RunTrigger(tTimeStamp tmTimeOfActivation) {
                 image_thread_running.store(false);
             }
         }
-
-        // position update
         if (m_propLimitPositionRefreshRate) {
             if ((tmTimeOfActivation - tmTimeOfLastPositionUpdate) > \
                 static_cast<tTimeStamp>(1e6 / m_propPositionRefreshRate)) {
@@ -75,19 +58,11 @@ tResult AirSimFilter::RunTrigger(tTimeStamp tmTimeOfActivation) {
     }
     RETURN_NOERROR;
 }
-
-// ____________________________________________________________________________
-/* implement cFilterLevelmachine */
-
 tResult AirSimFilter::Init(adtf::streaming::ant::cFilterBase::tInitStage eStage) {
     RETURN_IF_FAILED(cFilterBase::Init(eStage));
     if (eStage == adtf::streaming::ant::cFilterBase::tInitStage::StageFirst) {
         // clock
         _runtime->GetObject(m_pClock);
-
-        // register all pins
-        //   INPUT
-        //     tSignalValue (speed/steering)
         object_ptr<IStreamType> pTypeSignalData;
         if IS_OK(adtf::mediadescription::ant::create_adtf_default_stream_type_from_service(
             "tSignalValue", pTypeSignalData, m_SignalValueSampleFactory)) {
@@ -98,10 +73,6 @@ tResult AirSimFilter::Init(adtf::streaming::ant::cFilterBase::tInitStage eStage)
         }
         RETURN_IF_FAILED(create_pin(*this, m_oReaderSpeed, "speed_in", pTypeSignalData));
         RETURN_IF_FAILED(create_pin(*this, m_oReaderSteering, "steering_in", pTypeSignalData));
-
-        //   OUTPUT
-        //     tPosition (position)
-        //   register output pin stream type
         object_ptr<IStreamType> pTypePositionData;
         if IS_OK(adtf::mediadescription::ant::create_adtf_default_stream_type_from_service(
             "tPosition", pTypePositionData, m_PositionSampleFactory)) {
@@ -120,26 +91,19 @@ tResult AirSimFilter::Init(adtf::streaming::ant::cFilterBase::tInitStage eStage)
             LOG_INFO("No mediadescription for tPosition found!");
         }
         RETURN_IF_FAILED(create_pin(*this, m_oWriterPosition, "position_out", pTypePositionData));
-
-        //     Image
         m_sImageFormat.m_strFormatName = ADTF_IMAGE_FORMAT(RGB_24);
         const adtf::ucom::object_ptr<IStreamType> pType = \
             adtf::ucom::make_object_ptr<cStreamType>(stream_meta_type_image());
         set_stream_type_image_format(*pType, m_sImageFormat);
         RETURN_IF_FAILED(create_pin(*this, m_oWriterImage, "image_out", pType));
-
-        // RUNNER
-        // create a public runner that can be connected with a Timer Runner.
         adtf::ucom::object_ptr<adtf::streaming::IRunner> timerRunner = \
             adtf::ucom::make_object_ptr<adtf::streaming::cRunner>(
                 "airsimfilter_runner", [&](tTimeStamp tmTime) -> tResult {
                     return RunTrigger(tmTime);
                 });
-        //   register the runner
         RETURN_IF_FAILED(RegisterRunner(timerRunner));
 
     } else if (eStage == adtf::streaming::ant::cFilterBase::tInitStage::StagePreConnect) {
-        // create the AirSim client
         airsim_client_connected = createAirSimClient();
         getAirSimVehiclePose();
     }
@@ -163,10 +127,6 @@ tResult AirSimFilter::Shutdown(adtf::streaming::ant::cFilterBase::tInitStage eSt
     LOG_INFO("AirSimFilter: ShutdownStage");
     RETURN_NOERROR;
 }
-
-// ____________________________________________________________________________
-/* AirSim functions */
-
 bool AirSimFilter::createAirSimClient() {
     _airsim_client = new msr::airlib::CarRpcLibClient(
         std::string(static_cast<cString>(m_propAirsimServerIp)),
@@ -188,12 +148,9 @@ bool AirSimFilter::createAirSimClient() {
     }
     return false;
 }
-
-/* function to get images from the AirSim server */
 cv::Mat AirSimFilter::getAirSimImages() {
     cv::Mat img;
     try {
-        // _airsim_client->confirmConnection();
         vector<ImageRequest> request = {
             ImageRequest(
                 std::string(static_cast<cString>(m_propAirsimImageId)),
@@ -227,22 +184,16 @@ cv::Mat AirSimFilter::getAirSimImages() {
     }
     return img;
 }
-
-/* function to request the current vehicle pose from the AirSim server.
-   Unreal 'Actor' name can be provided.
-*/
 std::vector<double> AirSimFilter::getAirSimVehiclePose() {
     std::vector<double> car_pose = std::vector<double>(5, -1.0);
     try {
-        // _airsim_client->confirmConnection();
         auto car_state = _airsim_client->getCarState();
         auto pose = car_state.kinematics_estimated.pose;
         car_pose[0] = pose.position[0];
         car_pose[1] = -pose.position[1];
         car_pose[2] = pose.position[2];
-        car_pose[3] = -yawFromQuaternion(pose.orientation);  // make consistent with internal map
+        car_pose[3] = -yawFromQuaternion(pose.orientation);
         car_pose[4] = car_state.speed;
-        // car_pose[3] = (yawFromQuaternion(pose.orientation) * 180) / M_PI;
     } catch (rpc::rpc_error&  e) {
         std::string msg = e.get_error().as<std::string>();
         std::cout << "Exception raised by the API, something went wrong." <<
@@ -256,20 +207,12 @@ std::vector<double> AirSimFilter::getAirSimVehiclePose() {
     }
     return car_pose;
 }
-
-/* Get the yaw component from a Quaternion.
-   Adopted from msr::airlib::VectorMathT
-*/
 double AirSimFilter::yawFromQuaternion(const auto& q) {
     return atan2(2.0 * (q.w() * q.z() + q.x() * q.y()),
         1.0 - 2.0 * (q.y() * q.y() + q.z() * q.z()));
 }
-
-/* function to send car control commands to the AirSim server */
 bool AirSimFilter::sendControlsToAirSim(double speed, double steering) {
     try {
-        // _airsim_client->confirmConnection();
-        // enable API control
         _airsim_client->enableApiControl(true);
         CarApiBase::CarControls controls;
         controls.throttle = speed / 100;
@@ -281,7 +224,6 @@ bool AirSimFilter::sendControlsToAirSim(double speed, double steering) {
             controls.manual_gear = 0;
             controls.is_manual_gear = false;
         }
-        // control logging
         if (m_propEnableControlLogging) {
             if (speed < 0) std::cout << "REVERSING" << std::endl;
             std::cout << cString::Format("car controls: %f %f | airsim controls %f %f",
@@ -299,8 +241,6 @@ bool AirSimFilter::sendControlsToAirSim(double speed, double steering) {
     }
     return false;
 }
-
-/* function to get images from the AirSim server and writing them on the pin */
 void AirSimFilter::writeNewestAirSimImage(tTimeStamp tmTimeOfImageUpdate) {
     try {
         cv::Mat image = getAirSimImages();
@@ -309,8 +249,6 @@ void AirSimFilter::writeNewestAirSimImage(tTimeStamp tmTimeOfImageUpdate) {
             LOG_WARNING("AirSimClient: error writing image to pin.");
             return;
         }
-
-        // fps logging
         if (m_propEnableFPSLogging) {
             float fps = 1 / (static_cast<float>(
                 tmTimeOfImageUpdate - tmTimeOfLastImage.load()) * 1e-6);
@@ -324,8 +262,6 @@ void AirSimFilter::writeNewestAirSimImage(tTimeStamp tmTimeOfImageUpdate) {
                 image_thread_running.store(false);
     }
 }
-
-/* function to get the latest car pose from the AirSim server and send it to the output pin. */
 tResult AirSimFilter::writeNewestAirSimPosition() {
     std::vector<double> simulator_pose = getAirSimVehiclePose();
     return sendPositionStruct(
@@ -336,25 +272,16 @@ tResult AirSimFilter::writeNewestAirSimPosition() {
         simulator_pose[3],
         simulator_pose[4]);
 }
-
-// ____________________________________________________________________________
-/* Filter functions */
-
-/* function to write a cv::Mat to ADTF pin */
 tResult AirSimFilter::writeImageToPin(const Mat& outputImage) {
     if (!outputImage.empty()) {
-        // update output format if matrix size does not fit to
         if (outputImage.total() * outputImage.elemSize()
                                     != m_sImageFormat.m_szMaxByteSize) {
             setTypeFromMat(m_oWriterImage, outputImage);
         }
-        // write to pin
         writeMatToPin(m_oWriterImage, outputImage, m_pClock->GetStreamTime());
     }
     RETURN_NOERROR;
 }
-
-/* function to write a tPosition struct to ADTF pin */
 tResult AirSimFilter::sendPositionStruct(
     const tTimeStamp &timeOfWriting, const tFloat32 &f32X, const tFloat32 &f32Y,
     const tFloat32 &f32Radius, const tFloat32 &f32Heading, const tFloat32 &f32Speed) {
@@ -377,12 +304,9 @@ tResult AirSimFilter::sendPositionStruct(
     m_oWriterPosition << pSample << flush << trigger;
     RETURN_NOERROR;
 }
-
-/* function to read the latest samples from the speed/steering pins */
 tResult AirSimFilter::readControlInputPins() {
     object_ptr<const ISample> pReadSample;
     if (IS_OK(m_oReaderSpeed.GetLastSample(pReadSample))) {
-        // store speed
         auto oDecoder = m_SignalValueSampleFactory.MakeDecoderFor(*pReadSample);
         control_value_speed = static_cast<double>(adtf_ddl::access_element::get_value(
             oDecoder, m_ddlSignalValueId.value));
@@ -391,7 +315,6 @@ tResult AirSimFilter::readControlInputPins() {
         }
     }
     if (IS_OK(m_oReaderSteering.GetLastSample(pReadSample))) {
-        // store steering
         auto oDecoder = m_SignalValueSampleFactory.MakeDecoderFor(*pReadSample);
         control_value_steering = static_cast<double>(adtf_ddl::access_element::get_value(
             oDecoder, m_ddlSignalValueId.value));
