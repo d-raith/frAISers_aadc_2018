@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+	<roadSign id="0" x="0.000" y="1.000" radius="1.0" direction="-90" init="1"/>
+	<roadSign id="1" x="5.100" y="2.870" radius="1.0" direction="90"/>
+	<roadSign id="14" x="3.000" y="1.000" radius="1.0" direction="-90"/>
+	<roadSign id="3" x="3.000" y="4.100" radius="1.0" direction="180" />
+	<roadSign id="6" x="2.000" y="2.000" radius="1.0" direction="-90" />
+	<roadSign id="14" x="4.000" y="-0.150" radius="0.5" direction="0"  />
+	<roadSign id="5" x="12.000" y="0.000" radius="0.5" direction="0" />
+	
+</configuration>
+

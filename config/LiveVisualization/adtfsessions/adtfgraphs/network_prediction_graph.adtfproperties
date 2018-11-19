@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<property_file xmlns="adtf/xsd/properties">
+  <file_version>
+    <major>1</major>
+    <minor>0</minor>
+  </file_version>
+  <property_packages>
+    <property_package>
+      <name>default</name>
+      <property_sets>
+        <property_set>
+          <name>graphs/network_prediction_filtergraph</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/network_prediction_streaming_graph</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/network_prediction_streaming_graph/streaminggraphdock/Filter Graph Dock</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/network_prediction_streaming_graph/streaming_sources/Basler Camera</name>
+          <properties>
+            <property>
+              <name>streamHeight [Pixel]</name>
+              <value>960</value>
+              <type>tInt32</type>
+            </property>
+            <property>
+              <name>streamWidth [Pixel]</name>
+              <value>1280</value>
+              <type>tInt32</type>
+            </property>
+          </properties>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/network_prediction_streaming_graph/streaming_dock_in_ports/video_rgb</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/network_prediction_streaming_graph/connections/Basler Camera.video_rgb_Filter Graph Dock.video_rgb</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/network_prediction_streaming_graph/streaming_sources/Basler Camera/output_pins/video_rgb</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/network_prediction_filtergraph/streaming_in_ports/basler_camera</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/network_prediction_filtergraph/filters/Network Prediction</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/network_prediction_filtergraph/sample_streams/image_predicted</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/network_prediction_filtergraph/connections/Sample Stream._Network Prediction.video</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/network_prediction_filtergraph/filters/Network Prediction/input_pins/video</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/network_prediction_filtergraph/filters/Image raw</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/network_prediction_filtergraph/filters/Image raw/input_pins/video</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/network_prediction_filtergraph/filters/Neural Network Thrift Filter</name>
+          <properties>
+            <property>
+              <name>CropHeight [pix]</name>
+              <value>88</value>
+              <type>tInt32</type>
+            </property>
+            <property>
+              <name>CropHeightOffset [pix]</name>
+              <value>222</value>
+              <type>tInt32</type>
+            </property>
+            <property>
+              <name>eneableConsoleOutput</name>
+              <value>true</value>
+              <type>tBool</type>
+            </property>
+            <property>
+              <name>CropWidth [pix]</name>
+              <value>600</value>
+              <type>tInt32</type>
+            </property>
+            <property>
+              <name>CropWidthOffset [pix]</name>
+              <value>20</value>
+              <type>tInt32</type>
+            </property>
+            <property>
+              <name>launch_nn_server [bool]</name>
+              <value>true</value>
+              <type>tBool</type>
+            </property>
+          </properties>
+        </property_set>
+        <property_set>
+          <name>graphs/network_prediction_filtergraph/filters/Neural Network Thrift Filter/input_pins/image_in</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/network_prediction_filtergraph/connections/Neural Network Thrift Filter.image_out_image_predicted.</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/network_prediction_filtergraph/filters/Neural Network Thrift Filter/output_pins/image_out</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/network_prediction_filtergraph/sample_streams/undistorted</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/network_prediction_filtergraph/connections/undistorted._Image raw.video</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/network_prediction_filtergraph/filters/Fisheye Undistortion</name>
+          <properties>
+            <property>
+              <name>trigger/GPU scaling</name>
+              <value>1.0</value>
+              <type>tFloat32</type>
+            </property>
+            <property>
+              <name>trigger/calibration file</name>
+              <value>../../../../configuration_files/basler_fisheye_intrinsic_calib_opencv_car26.yml</value>
+              <type>cFilename</type>
+            </property>
+            <property>
+              <name>trigger/GPU processing</name>
+              <value>true</value>
+              <type>tBool</type>
+            </property>
+          </properties>
+        </property_set>
+        <property_set>
+          <name>graphs/network_prediction_filtergraph/connections/basler_camera._Fisheye Undistortion.input</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/network_prediction_filtergraph/filters/Fisheye Undistortion/input_pins/input</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/network_prediction_filtergraph/connections/Fisheye Undistortion.output_undistorted.</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/network_prediction_filtergraph/filters/Fisheye Undistortion/output_pins/output</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/network_prediction_filtergraph/connections/undistorted._Neural Network Thrift Filter.image_in</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/kernel.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/reference_clock.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/signal_registry.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/media_description.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/qt_xsystem.ui_service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/log_view.ui_service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/sample_stream_tracer.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/sample_stream_trace_view.ui_service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/adtf_file_support.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/playback.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/signal_table_view.ui_service.adtf_disptb</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/signal_tree_view.ui_service.adtf_disptb</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/signal_scope_view.ui_service.adtf_disptb</name>
+          <properties/>
+        </property_set>
+      </property_sets>
+    </property_package>
+  </property_packages>
+</property_file>

@@ -1,0 +1,28 @@
+%YAML:1.0
+---
+# basler fisheye intrinsic calibration, opencv-format
+# Car 27
+# Johan, June 26, 2018
+#
+# cam_overlaps: []
+# camera_model: pinhole
+# distortion_model: equidistant
+# resolution: [1280, 960]
+#
+
+# flags: +fix_skew +recompute_extrinsic   # ?
+flags: 10                                 # ?
+fisheye_model: 1                          # ?
+camera_matrix: !!opencv-matrix
+   rows: 3
+   cols: 3
+   dt: d
+   data: [ 585.5644470303048, 0., 630.5897331003082, 0.,
+        584.8964075434083, 477.7496476463654, 0., 0., 1. ]
+distortion_coefficients: !!opencv-matrix
+   rows: 4
+   cols: 1
+   dt: d
+   data: [ -0.022448550169849268, -0.003927616276589632,
+       0.002177568341205198, -0.0015504355882659305 ]
+

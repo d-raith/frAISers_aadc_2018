@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<session xmlns="adtf/xsd/session">
+  <file_version>
+    <major>1</major>
+    <minor>0</minor>
+  </file_version>
+  <name>laserSegmentation</name>
+  <adtfsystem>
+    <url>./adtfsystems/default_system.adtfsystem</url>
+    <properties_url>./adtfsystems/default_system.adtfproperties</properties_url>
+    <property_set/>
+    <name>default_system</name>
+  </adtfsystem>
+  <adtfgraph>
+    <url>./adtfgraphs/laserSegmentation_graph.adtfgraph</url>
+    <properties_url>./adtfgraphs/laserSegmentation_graph.adtfproperties</properties_url>
+    <property_set/>
+    <name>laserSegmentation_graph</name>
+  </adtfgraph>
+  <active_streaming_graph>laserSegmentation_streaming</active_streaming_graph>
+  <active_filter_graph>laserSegmentation_filter</active_filter_graph>
+</session>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<property_file xmlns="adtf/xsd/properties">
+  <file_version>
+    <major>1</major>
+    <minor>0</minor>
+  </file_version>
+  <property_packages>
+    <property_package>
+      <name>default</name>
+      <property_sets>
+        <property_set>
+          <name>streaming_graphs/camera_snapshot</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/camera_snapshot/streaminggraphdock/Filter Graph Dock</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/camera_snapshot/streaming_sources/Basler Camera</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/camera_snapshot/streaming_dock_in_ports/basler_camera</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/camera_snapshot/connections/Basler Camera.video_rgb_Filter Graph Dock.basler_camera</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/camera_snapshot/streaming_sources/Basler Camera/output_pins/video_rgb</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/camera_snapshot</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/camera_snapshot/filters/Camera Snapshot</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/camera_snapshot/filters/Camera Snapshot/input_pins/input</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/camera_snapshot/sample_streams/video_after_snapshot</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/camera_snapshot/connections/Camera Snapshot.output_video_after_snapshot.</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/camera_snapshot/filters/Camera Snapshot/output_pins/output</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/camera_snapshot/filters/display</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/camera_snapshot/connections/video_after_snapshot._display.video</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/camera_snapshot/filters/display/input_pins/video</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/camera_snapshot/streaming_in_ports/basler_camera</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/camera_snapshot/filters/Fisheye Undistortion</name>
+          <properties>
+            <property>
+              <name>trigger/calibration file</name>
+              <value>../../../../configuration_files/basler_fisheye_intrinsic_calib_opencv_car26.yml</value>
+              <type>cFilename</type>
+            </property>
+          </properties>
+        </property_set>
+        <property_set>
+          <name>graphs/camera_snapshot/connections/basler_camera._Fisheye Undistortion.input</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/camera_snapshot/filters/Fisheye Undistortion/input_pins/input</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/camera_snapshot/sample_streams/undistored_video</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/camera_snapshot/connections/Fisheye Undistortion.output_undistored_video.</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/camera_snapshot/filters/Fisheye Undistortion/output_pins/output</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/camera_snapshot/connections/undistored_video._Camera Snapshot.input</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/kernel.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/reference_clock.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/signal_registry.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/media_description.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/qt_xsystem.ui_service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/log_view.ui_service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/sample_stream_tracer.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/sample_stream_trace_view.ui_service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/adtf_file_support.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/playback.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/signal_table_view.ui_service.adtf_disptb</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/signal_tree_view.ui_service.adtf_disptb</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/signal_scope_view.ui_service.adtf_disptb</name>
+          <properties/>
+        </property_set>
+      </property_sets>
+    </property_package>
+  </property_packages>
+</property_file>

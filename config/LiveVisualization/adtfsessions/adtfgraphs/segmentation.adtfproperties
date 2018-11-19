@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<property_file xmlns="adtf/xsd/properties">
+  <file_version>
+    <major>1</major>
+    <minor>0</minor>
+  </file_version>
+  <property_packages>
+    <property_package>
+      <name>default</name>
+      <property_sets>
+        <property_set>
+          <name>graphs/segmentation</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/segmentation</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/segmentation/streaminggraphdock/Filter Graph Dock</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/segmentation/streaming_sources/Basler Camera</name>
+          <properties>
+            <property>
+              <name>streamWidth [Pixel]</name>
+              <value>1280</value>
+              <type>tInt32</type>
+            </property>
+            <property>
+              <name>streamHeight [Pixel]</name>
+              <value>960</value>
+              <type>tInt32</type>
+            </property>
+            <property>
+              <name>ROI height [Pixel]</name>
+              <value>350</value>
+              <type>tInt32</type>
+            </property>
+            <property>
+              <name>ROI width [Pixel]</name>
+              <value>1280</value>
+              <type>tInt32</type>
+            </property>
+            <property>
+              <name>ROI xOffset [Pixel]</name>
+              <value>0</value>
+              <type>tInt32</type>
+            </property>
+            <property>
+              <name>ROI yOffset [Pixel]</name>
+              <value>400</value>
+              <type>tInt32</type>
+            </property>
+          </properties>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/segmentation/streaming_dock_in_ports/basler_video</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/segmentation/connections/Basler Camera.video_rgb_Filter Graph Dock.basler_video</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/segmentation/streaming_sources/Basler Camera/output_pins/video_rgb</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/streaming_in_ports/basler_video</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/filters/Neural Network Thrift Filter</name>
+          <properties>
+            <property>
+              <name>CropHeightOffset [pix]</name>
+              <value>222</value>
+              <type>tInt32</type>
+            </property>
+            <property>
+              <name>CropHeight [pix]</name>
+              <value>88</value>
+              <type>tInt32</type>
+            </property>
+            <property>
+              <name>CropWidth [pix]</name>
+              <value>600</value>
+              <type>tInt32</type>
+            </property>
+            <property>
+              <name>CropWidthOffset [pix]</name>
+              <value>20</value>
+              <type>tInt32</type>
+            </property>
+            <property>
+              <name>launch_nn_server [bool]</name>
+              <value>true</value>
+              <type>tBool</type>
+            </property>
+            <property>
+              <name>eneableConsoleOutput</name>
+              <value>true</value>
+              <type>tBool</type>
+            </property>
+          </properties>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/filters/Neural Network Thrift Filter/input_pins/image_in</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/filters/Neural Network Thrift Filter/output_pins/image_out</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/sample_streams/undistorted</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/filters/Fisheye Undistortion</name>
+          <properties>
+            <property>
+              <name>trigger/GPU scaling</name>
+              <value>1.0</value>
+              <type>tFloat32</type>
+            </property>
+            <property>
+              <name>trigger/GPU processing</name>
+              <value>true</value>
+              <type>tBool</type>
+            </property>
+            <property>
+              <name>trigger/calibration file</name>
+              <value>../../../../configuration_files/basler_fisheye_intrinsic_calib_opencv_car26.yml</value>
+              <type>cFilename</type>
+            </property>
+          </properties>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/connections/Fisheye Undistortion.output_undistorted.</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/filters/Fisheye Undistortion/output_pins/output</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/connections/basler_video._Fisheye Undistortion.input</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/filters/Fisheye Undistortion/input_pins/input</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/filters/Demo Qt Video Display/input_pins/video</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/filters/Demo Qt Video Display</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/sample_streams/Sample Stream</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/connections/Sample Stream._Demo Qt Video Display.video</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/segmentation/streaming_sources/Laser Scanner</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/segmentation/streaming_dock_in_ports/laser_scan</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/streaming_in_ports/laser_scan</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/sample_streams/network_out</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/connections/Neural Network Thrift Filter.image_out_Sample Stream_1.</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/filters/Sensor Visualization</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/connections/laser_scan._Sensor Visualization.laser_scanner</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/filters/Sensor Visualization/input_pins/laser_scanner</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/segmentation/connections/Laser Scanner.output_Filter Graph Dock.laser_scan</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/segmentation/streaming_sources/Laser Scanner/output_pins/output</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/sample_streams/stream_car_L</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/sample_streams/stream_car_R</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/sample_streams/stream_car_M</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/sample_streams/stream_person</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/segmentation/streaming_dock_in_ports/mic_audio</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/streaming_in_ports/mic_audio</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/sample_streams/audio_stream</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/connections/mic_audio._audio_stream.</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/filters/LaserSegmentation</name>
+          <properties>
+            <property>
+              <name>trigger/car_number [int]</name>
+              <value>26</value>
+              <type>tInt32</type>
+            </property>
+            <property>
+              <name>trigger/car_threshold [float]</name>
+              <value>0.700000</value>
+              <type>tFloat32</type>
+            </property>
+            <property>
+              <name>trigger/person_threshold [float]</name>
+              <value>0.100000</value>
+              <type>tFloat32</type>
+            </property>
+            <property>
+              <name>trigger/scan_max_range(car) [float]</name>
+              <value>2.500000</value>
+              <type>tFloat32</type>
+            </property>
+            <property>
+              <name>trigger/scanpoint_roi [int]</name>
+              <value>5</value>
+              <type>tInt32</type>
+            </property>
+            <property>
+              <name>trigger/scanpoint_roi_debug [bool]</name>
+              <value>true</value>
+              <type>tBool</type>
+            </property>
+            <property>
+              <name>trigger/visualize_objects [bool]</name>
+              <value>true</value>
+              <type>tBool</type>
+            </property>
+            <property>
+              <name>trigger/dataset_generation_enable</name>
+              <value>true</value>
+              <type>tBool</type>
+            </property>
+            <property>
+              <name>trigger/dataset_generation_sirenon</name>
+              <value>true</value>
+              <type>tBool</type>
+            </property>
+            <property>
+              <name>trigger/enable debug output pin</name>
+              <value>true</value>
+              <type>tBool</type>
+            </property>
+          </properties>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/connections/Sample Stream_1._LaserSegmentation.input</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/filters/LaserSegmentation/input_pins/input</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/connections/laser_scan._LaserSegmentation.laser_scanner</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/filters/LaserSegmentation/input_pins/laser_scanner</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/connections/LaserSegmentation.output_Sample Stream.</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/filters/LaserSegmentation/output_pins/output</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/kernel.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/reference_clock.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/signal_registry.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/media_description.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/qt_xsystem.ui_service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/log_view.ui_service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/signal_table_view.ui_service.adtf_disptb</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/signal_tree_view.ui_service.adtf_disptb</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/signal_scope_view.ui_service.adtf_disptb</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/adtf_file_support.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/playback.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/filters/carcropped</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/sample_streams/Sample Stream_2</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/connections/LaserSegmentation.detection_out_Sample Stream_2.</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/filters/LaserSegmentation/output_pins/detection_out</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/connections/Sample Stream_2._carcropped.video</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/filters/carcropped/input_pins/video</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/filters/Scale Crop</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/connections/undistorted._Scale Crop.input</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/filters/Scale Crop/input_pins/input</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/sample_streams/scaled_cropped_raw</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/connections/Scale Crop.output_scaled_cropped_raw.</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/filters/Scale Crop/output_pins/output</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/connections/scaled_cropped_raw._LaserSegmentation.raw_video_in</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/filters/LaserSegmentation/input_pins/raw_video_in</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/segmentation/connections/scaled_cropped_raw._Neural Network Thrift Filter.image_in</name>
+          <properties/>
+        </property_set>
+      </property_sets>
+    </property_package>
+  </property_packages>
+</property_file>

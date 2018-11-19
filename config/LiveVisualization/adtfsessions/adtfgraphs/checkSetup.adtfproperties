@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<property_file xmlns="adtf/xsd/properties">
+  <file_version>
+    <major>1</major>
+    <minor>0</minor>
+  </file_version>
+  <property_packages>
+    <property_package>
+      <name>default</name>
+      <property_sets>
+        <property_set>
+          <name>streaming_graphs/checkSetup</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/checkSetup/streaminggraphdock/Filter Graph Dock</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/checkSetup</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/checkSetup/streaming_sources/Basler Camera</name>
+          <properties>
+            <property>
+              <name>ROI height [Pixel]</name>
+              <value>350</value>
+              <type>tInt32</type>
+            </property>
+            <property>
+              <name>ROI width [Pixel]</name>
+              <value>1280</value>
+              <type>tInt32</type>
+            </property>
+            <property>
+              <name>ROI xOffset [Pixel]</name>
+              <value>0</value>
+              <type>tInt32</type>
+            </property>
+            <property>
+              <name>ROI yOffset [Pixel]</name>
+              <value>400</value>
+              <type>tInt32</type>
+            </property>
+          </properties>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/checkSetup/streaming_sources/Basler Camera/output_pins/video_rgb</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/checkSetup/streaming_in_ports/basler_video_in</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/checkSetup/streaming_dock_in_ports/basler_video_in</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/checkSetup/connections/Basler Camera.video_rgb_Filter Graph Dock.basler_video_in</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/checkSetup/filters/drawing filter</name>
+          <properties>
+            <property>
+              <name>trigger/draw centerline [bool]</name>
+              <value>false</value>
+              <type>tBool</type>
+            </property>
+            <property>
+              <name>trigger/draw rectangle [bool]</name>
+              <value>true</value>
+              <type>tBool</type>
+            </property>
+            <property>
+              <name>trigger/rec_size_y [pix]</name>
+              <value>350</value>
+              <type>tInt32</type>
+            </property>
+            <property>
+              <name>trigger/rec_offset_y [pix]</name>
+              <value>400</value>
+              <type>tInt32</type>
+            </property>
+            <property>
+              <name>trigger/rec_size_x [pix]</name>
+              <value>1280</value>
+              <type>tInt32</type>
+            </property>
+            <property>
+              <name>trigger/rec_offset_x [pix]</name>
+              <value>0</value>
+              <type>tInt32</type>
+            </property>
+          </properties>
+        </property_set>
+        <property_set>
+          <name>graphs/checkSetup/connections/basler_video_in._drawing filter.input</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/checkSetup/filters/drawing filter/input_pins/input</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/checkSetup/sample_streams/video_raw</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/checkSetup/connections/drawing filter.output_video_centerline.</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/checkSetup/filters/drawing filter/output_pins/output</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/checkSetup/filters/Fisheye Undistortion</name>
+          <properties>
+            <property>
+              <name>trigger/calibration file</name>
+              <value>../../../../configuration_files/basler_fisheye_intrinsic_calib_opencv_car26.yml</value>
+              <type>cFilename</type>
+            </property>
+            <property>
+              <name>trigger/GPU processing</name>
+              <value>true</value>
+              <type>tBool</type>
+            </property>
+            <property>
+              <name>trigger/GPU scaling</name>
+              <value>0.5</value>
+              <type>tFloat32</type>
+            </property>
+          </properties>
+        </property_set>
+        <property_set>
+          <name>graphs/checkSetup/connections/video_centerline._Fisheye Undistortion.input</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/checkSetup/filters/Fisheye Undistortion/input_pins/input</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/checkSetup/sample_streams/video_undistorted</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/checkSetup/connections/Fisheye Undistortion.output_video_undistorted.</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/checkSetup/filters/Fisheye Undistortion/output_pins/output</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/checkSetup/filters/drawing filter_1</name>
+          <properties>
+            <property>
+              <name>trigger/draw centerline [bool]</name>
+              <value>false</value>
+              <type>tBool</type>
+            </property>
+            <property>
+              <name>trigger/draw rectangle [bool]</name>
+              <value>true</value>
+              <type>tBool</type>
+            </property>
+            <property>
+              <name>trigger/rec_size_y [pix]</name>
+              <value>85</value>
+              <type>tInt32</type>
+            </property>
+            <property>
+              <name>trigger/rec_offset_x [pix]</name>
+              <value>20</value>
+              <type>tInt32</type>
+            </property>
+            <property>
+              <name>trigger/rec_offset_y [pix]</name>
+              <value>225</value>
+              <type>tInt32</type>
+            </property>
+            <property>
+              <name>trigger/rec_size_x [pix]</name>
+              <value>600</value>
+              <type>tInt32</type>
+            </property>
+          </properties>
+        </property_set>
+        <property_set>
+          <name>graphs/checkSetup/connections/video_undistorted._drawing filter_1.input</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/checkSetup/filters/drawing filter_1/input_pins/input</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/checkSetup/sample_streams/video_undistorted_centerline</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/checkSetup/connections/drawing filter_1.output_video_undistorted_centerline.</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/checkSetup/filters/drawing filter_1/output_pins/output</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/checkSetup/filters/undistorted</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/checkSetup/connections/video_undistorted_centerline._Demo Qt Video Display.video</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/checkSetup/filters/undistorted/input_pins/video</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/checkSetup/filters/raw</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/checkSetup/connections/video_centerline._raw.video</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/checkSetup/filters/raw/input_pins/video</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/kernel.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/reference_clock.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/signal_registry.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/media_description.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/qt_xsystem.ui_service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/log_view.ui_service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/sample_stream_tracer.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/sample_stream_trace_view.ui_service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/adtf_file_support.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/playback.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/signal_table_view.ui_service.adtf_disptb</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/signal_tree_view.ui_service.adtf_disptb</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/signal_scope_view.ui_service.adtf_disptb</name>
+          <properties/>
+        </property_set>
+      </property_sets>
+    </property_package>
+  </property_packages>
+</property_file>

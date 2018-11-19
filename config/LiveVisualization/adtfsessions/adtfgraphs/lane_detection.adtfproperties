@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<property_file xmlns="adtf/xsd/properties">
+  <file_version>
+    <major>1</major>
+    <minor>0</minor>
+  </file_version>
+  <property_packages>
+    <property_package>
+      <name>default</name>
+      <property_sets>
+        <property_set>
+          <name>streaming_graphs/lane_detection</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/lane_detection/streaminggraphdock/Filter Graph Dock</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/lane_detection/streaming_dock_in_ports/basler_camera</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/lane_detection</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/lane_detection/streaming_in_ports/basler_camera</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/lane_detection/filters/Fisheye Undistortion</name>
+          <properties>
+            <property>
+              <name>trigger/calibration file</name>
+              <value>../../../../configuration_files/basler_fisheye_intrinsic_calib_opencv_car26.yml</value>
+              <type>cFilename</type>
+            </property>
+          </properties>
+        </property_set>
+        <property_set>
+          <name>graphs/lane_detection/connections/basler_camera._Fisheye Undistortion.input</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/lane_detection/filters/Fisheye Undistortion/input_pins/input</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/lane_detection/sample_streams/undistorted_video</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/lane_detection/connections/Fisheye Undistortion.output_undistorted_video.</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/lane_detection/filters/Fisheye Undistortion/output_pins/output</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/lane_detection/filters/Adaptive Lane Detection</name>
+          <properties>
+            <property>
+              <name>trigger/birdseyeTransFile</name>
+              <value>../../../../configuration_files/birdseyeTransFile_Car26.xml</value>
+              <type>cFilename</type>
+            </property>
+            <property>
+              <name>trigger/roi_offset_x [m]</name>
+              <value>0.500000</value>
+              <type>tFloat32</type>
+            </property>
+            <property>
+              <name>trigger/roi_width [m]</name>
+              <value>2.00000</value>
+              <type>tFloat32</type>
+            </property>
+          </properties>
+        </property_set>
+        <property_set>
+          <name>graphs/lane_detection/connections/undistorted_video._Adaptive Lane Detection.input</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/lane_detection/filters/Adaptive Lane Detection/input_pins/input</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/lane_detection/filters/lines_display</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/lane_detection/sample_streams/lines_video</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/lane_detection/connections/Adaptive Lane Detection.lines_image_lines_video.</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/lane_detection/filters/Adaptive Lane Detection/output_pins/lines_image</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/lane_detection/connections/lines_video._lines_display.video</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/lane_detection/filters/lines_display/input_pins/video</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/lane_detection/filters/lanes_display</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/lane_detection/sample_streams/lanes_video</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/lane_detection/connections/Adaptive Lane Detection.lanes_image_lanes_video.</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/lane_detection/filters/Adaptive Lane Detection/output_pins/lanes_image</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/lane_detection/connections/lanes_video._lanes_display.video</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/lane_detection/filters/lanes_display/input_pins/video</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/kernel.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/reference_clock.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/signal_registry.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/media_description.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/qt_xsystem.ui_service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/log_view.ui_service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/sample_stream_tracer.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/sample_stream_trace_view.ui_service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/adtf_file_support.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/playback.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/signal_table_view.ui_service.adtf_disptb</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/signal_tree_view.ui_service.adtf_disptb</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/signal_scope_view.ui_service.adtf_disptb</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/lane_detection/filters/Adaptive Lane Detection/output_pins/points</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/lane_detection/sample_streams/points</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/lane_detection/connections/Adaptive Lane Detection.points_points.</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/lane_detection/streaming_sources/ADTFDAT File Player/output_pins/basler_video</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/lane_detection/streaming_sources/ADTFDAT File Player</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/lane_detection/connections/ADTFDAT File Player.basler_video_Filter Graph Dock.basler_camera</name>
+          <properties/>
+        </property_set>
+      </property_sets>
+    </property_package>
+  </property_packages>
+</property_file>

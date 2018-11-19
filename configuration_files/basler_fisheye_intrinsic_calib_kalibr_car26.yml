@@ -1,0 +1,21 @@
+# basler fisheye intrinsic calibration, kalibr-format
+# Car 26
+# Novian, August 2, 2018
+
+cam0:
+
+  cam_overlaps: []
+
+  camera_model: pinhole
+
+  distortion_coeffs: [-0.022269564563419622, -0.0007940166405779473, -0.0010836868484970712,
+
+    -0.0007089235570555667]
+
+  distortion_model: equidistant
+
+  intrinsics: [584.2917310493169, 583.7685601949312, 641.3844958728575, 481.43623388107613]
+
+  resolution: [1280, 960]
+
+  rostopic: /pylon_camera_node/image_raw

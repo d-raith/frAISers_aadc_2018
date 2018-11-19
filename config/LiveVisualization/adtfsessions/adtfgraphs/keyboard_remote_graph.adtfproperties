@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<property_file xmlns="adtf/xsd/properties">
+  <file_version>
+    <major>1</major>
+    <minor>0</minor>
+  </file_version>
+  <property_packages>
+    <property_package>
+      <name>default</name>
+      <property_sets>
+        <property_set>
+          <name>graphs/KeyboardFilterGraph/streaming_out_ports/speed out</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/KeyboardFilterGraph/streaming_out_ports/steering out</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/KeyboardFilterGraph</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/KeyboardStreamingGraph/streaming_sinks/Car Controller/input_pins/steering</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/KeyboardStreamingGraph/streaming_sinks/Car Controller/input_pins/speed</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/KeyboardStreamingGraph/streaming_sinks/Car Controller</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/KeyboardStreamingGraph/streaminggraphdock/Filter Graph Dock</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/KeyboardStreamingGraph</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/KeyboardStreamingGraph/streaming_dock_out_ports/speed_out</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/KeyboardStreamingGraph/streaming_dock_out_ports/steering_out</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/KeyboardStreamingGraph/connections/Filter Graph Dock.speed_out_Car Controller.speed</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/KeyboardFilterGraph/streaming_out_ports/headlights</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/KeyboardFilterGraph/streaming_out_ports/hazard lights</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/KeyboardStreamingGraph/streaming_sinks/Car Controller/input_pins/head_light</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/KeyboardStreamingGraph/streaming_dock_out_ports/headlights_out</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/KeyboardStreamingGraph/connections/Filter Graph Dock.headlights_out_Car Controller.head_light</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/KeyboardStreamingGraph/streaming_dock_out_ports/siren_out</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/KeyboardStreamingGraph/streaming_dock_out_ports/hazard_out</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/KeyboardStreamingGraph/connections/Filter Graph Dock.hazard_out_Car Controller.hazard_light</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/KeyboardStreamingGraph/streaming_sinks/Car Controller/input_pins/hazard_light</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/KeyboardFilterGraph/filters/Wheel converter</name>
+          <properties>
+            <property>
+              <name>trigger/direction derived from speed controller actuator value</name>
+              <value>false</value>
+              <type>tBool</type>
+            </property>
+            <property>
+              <name>trigger/plausibilization via direction indicator enable</name>
+              <value>false</value>
+              <type>tBool</type>
+            </property>
+            <property>
+              <name>trigger/enable filtering</name>
+              <value>false</value>
+              <type>tBool</type>
+            </property>
+            <property>
+              <name>trigger/deadband for speed controll direction</name>
+              <value>0.0</value>
+              <type>tFloat32</type>
+            </property>
+          </properties>
+        </property_set>
+        <property_set>
+          <name>graphs/KeyboardFilterGraph/streaming_in_ports/left wheel</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/KeyboardFilterGraph/connections/left wheel._Wheel converter.wheel_left</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/KeyboardFilterGraph/filters/Wheel converter/input_pins/wheel_left</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/KeyboardFilterGraph/streaming_in_ports/right wheel</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/KeyboardFilterGraph/connections/right wheel._Wheel converter.wheel_right</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/KeyboardFilterGraph/filters/Wheel converter/input_pins/wheel_right</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/KeyboardFilterGraph/filters/WheelSpeedController</name>
+          <properties>
+            <property>
+              <name>trigger/differential factor for PID Controller</name>
+              <value>0.16</value>
+              <type>tFloat64</type>
+            </property>
+            <property>
+              <name>trigger/integral factor for PID Controller</name>
+              <value>0.0</value>
+              <type>tFloat64</type>
+            </property>
+            <property>
+              <name>trigger/proportional factor for PID Controller </name>
+              <value>10</value>
+              <type>tFloat64</type>
+            </property>
+            <property>
+              <name>trigger/show debug output</name>
+              <value>true</value>
+              <type>tBool</type>
+            </property>
+            <property>
+              <name>trigger/time constant for pt1 controller</name>
+              <value>0.200000</value>
+              <type>tFloat64</type>
+            </property>
+            <property>
+              <name>trigger/controller type</name>
+              <value>3</value>
+              <type>tInt32</type>
+            </property>
+          </properties>
+        </property_set>
+        <property_set>
+          <name>graphs/KeyboardFilterGraph/sample_streams/measured speed</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/KeyboardFilterGraph/connections/Wheel converter.vehicle_speed_measured speed.</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/KeyboardFilterGraph/filters/Wheel converter/output_pins/vehicle_speed</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/KeyboardFilterGraph/connections/measured speed._WheelSpeedController.measured_vehicle_speed</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/KeyboardFilterGraph/filters/WheelSpeedController/input_pins/measured_vehicle_speed</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/KeyboardStreamingGraph/streaming_sources/Arduino EgoMotion Sensor</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/KeyboardStreamingGraph/streaming_dock_in_ports/wheel_left</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/KeyboardStreamingGraph/streaming_dock_in_ports/wheel_right</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/KeyboardStreamingGraph/connections/Arduino EgoMotion Sensor.wheel_left_Filter Graph Dock.wheel_left</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/KeyboardStreamingGraph/streaming_sources/Arduino EgoMotion Sensor/output_pins/wheel_left</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/KeyboardStreamingGraph/connections/Arduino EgoMotion Sensor.wheel_right_Filter Graph Dock.wheel_right</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/KeyboardStreamingGraph/streaming_sources/Arduino EgoMotion Sensor/output_pins/wheel_right</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/KeyboardStreamingGraph/connections/Filter Graph Dock.steering_out_Car Controller.steering</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/KeyboardFilterGraph/sample_streams/target speed</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/KeyboardFilterGraph/connections/target speed._WheelSpeedController.desired_vehicle_speed</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/KeyboardFilterGraph/filters/WheelSpeedController/input_pins/desired_vehicle_speed</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/KeyboardFilterGraph/filters/WheelSpeedController/output_pins/actuator_output</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/KeyboardFilterGraph/connections/WheelSpeedController.actuator_output_speed out.</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/KeyboardFilterGraph/connections/target speed._Wheel converter.speed_control</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/KeyboardFilterGraph/filters/Wheel converter/input_pins/speed_control</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/kernel.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/reference_clock.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/signal_registry.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/media_description.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/qt_xsystem.ui_service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/log_view.ui_service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/sample_stream_tracer.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/sample_stream_trace_view.ui_service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/adtf_file_support.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/playback.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/signal_table_view.ui_service.adtf_disptb</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/signal_tree_view.ui_service.adtf_disptb</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/signal_scope_view.ui_service.adtf_disptb</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/KeyboardFilterGraph/filters/KeyboardRemoteFilter</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/KeyboardFilterGraph/connections/KeyboardRemoteFilter.speed_target speed.</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/KeyboardFilterGraph/filters/KeyboardRemoteFilter/output_pins/speed</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/KeyboardFilterGraph/connections/KeyboardRemoteFilter.steering_steering out.</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/KeyboardFilterGraph/filters/KeyboardRemoteFilter/output_pins/steering</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/KeyboardFilterGraph/connections/KeyboardRemoteFilter.headlights_headlights.</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/KeyboardFilterGraph/filters/KeyboardRemoteFilter/output_pins/headlights</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/KeyboardFilterGraph/connections/KeyboardRemoteFilter.hazard lights_hazard lights.</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/KeyboardFilterGraph/filters/KeyboardRemoteFilter/output_pins/hazard lights</name>
+          <properties/>
+        </property_set>
+      </property_sets>
+    </property_package>
+  </property_packages>
+</property_file>

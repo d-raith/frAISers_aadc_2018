@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<property_file xmlns="adtf/xsd/properties">
+  <file_version>
+    <major>1</major>
+    <minor>0</minor>
+  </file_version>
+  <property_packages>
+    <property_package>
+      <name>default</name>
+      <property_sets>
+        <property_set>
+          <name>services/kernel.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/reference_clock.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/signal_registry.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/media_description.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/qt_xsystem.ui_service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/log_view.ui_service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/sample_stream_tracer.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/sample_stream_trace_view.ui_service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/adtf_file_support.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/playback.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/signal_table_view.ui_service.adtf_disptb</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/signal_tree_view.ui_service.adtf_disptb</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/signal_scope_view.ui_service.adtf_disptb</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/test_positioning_streaming</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/test_positioning_streaming/streaminggraphdock/Filter Graph Dock</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/test_positioning_filter</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/test_positioning_filter/filters/Marker Positioning</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/test_positioning_filter/filters/frAISers Marker Positioning</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/test_positioning_filter/filters/Marker Detector</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/test_positioning_filter/filters/Fisheye Undistortion</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/test_positioning_filter/sample_streams/Sample Stream</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/test_positioning_filter/connections/Fisheye Undistortion.output_Sample Stream.</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/test_positioning_filter/filters/Fisheye Undistortion/output_pins/output</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/test_positioning_filter/connections/Sample Stream._Marker Detector.input</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/test_positioning_filter/filters/Marker Detector/input_pins/input</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/test_positioning_filter/filters/WheelSpeedController</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/test_positioning_filter/streaming_in_ports/in_imu</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/test_positioning_filter/sample_streams/Sample Stream_1</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/test_positioning_filter/connections/in_imu._Sample Stream_1.</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/test_positioning_filter/connections/Sample Stream_1._Marker Positioning.imu</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/test_positioning_filter/filters/Marker Positioning/input_pins/imu</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/test_positioning_filter/connections/Sample Stream_1._frAISers Marker Positioning.imu</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/test_positioning_filter/filters/frAISers Marker Positioning/input_pins/imu</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/test_positioning_filter/sample_streams/road_sign_ext</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/test_positioning_filter/connections/Marker Detector.road_sign_ext_Sample Stream_2.</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/test_positioning_filter/connections/Sample Stream_2._Marker Positioning.road_sign_ext</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/test_positioning_filter/filters/Marker Detector/output_pins/road_sign_ext</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/test_positioning_filter/filters/Marker Positioning/input_pins/road_sign_ext</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/test_positioning_filter/connections/road_ext._frAISers Marker Positioning.road_sign_ext</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/test_positioning_filter/filters/frAISers Marker Positioning/input_pins/road_sign_ext</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/test_positioning_filter/filters/Demo Qt Video Display</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/test_positioning_filter/sample_streams/Sample Stream_2</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/test_positioning_filter/connections/Sample Stream_2._Demo Qt Video Display.video</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/test_positioning_filter/filters/Demo Qt Video Display/input_pins/video</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/test_positioning_filter/connections/Marker Detector.output_Sample Stream_2.</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/test_positioning_filter/filters/Marker Detector/output_pins/output</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/test_positioning_filter/filters/Demo Qt Media Description Display</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/test_positioning_filter/filters/Demo Qt Media Description Display_1</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/test_positioning_filter/filters/ConverterWheels</name>
+          <properties/>
+        </property_set>
+      </property_sets>
+    </property_package>
+  </property_packages>
+</property_file>

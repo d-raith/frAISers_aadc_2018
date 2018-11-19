@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<property_file xmlns="adtf/xsd/properties">
+  <file_version>
+    <major>1</major>
+    <minor>0</minor>
+  </file_version>
+  <property_packages>
+    <property_package>
+      <name>default</name>
+      <property_sets>
+        <property_set>
+          <name>streaming_graphs/laserSegmentation_streaming</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/laserSegmentation_streaming/streaminggraphdock/Filter Graph Dock</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/laserSegmentation_streaming/streaming_dock_in_ports/basler</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/laserSegmentation_filter</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/laserSegmentation_filter/streaming_in_ports/basler</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/laserSegmentation_filter/filters/LaserSegmentation</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/laserSegmentation_filter/connections/basler._LaserSegmentation.input</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/laserSegmentation_filter/filters/LaserSegmentation/input_pins/input</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/laserSegmentation_streaming/streaming_dock_in_ports/laser</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/laserSegmentation_filter/streaming_in_ports/laser</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/laserSegmentation_filter/connections/laser._LaserSegmentation.laser_scanner</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/laserSegmentation_filter/filters/LaserSegmentation/input_pins/laser_scanner</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/laserSegmentation_filter/filters/Demo Qt Video Display</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/laserSegmentation_filter/sample_streams/Sample Stream</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/laserSegmentation_filter/connections/LaserSegmentation.output_Sample Stream.</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/laserSegmentation_filter/filters/LaserSegmentation/output_pins/output</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/laserSegmentation_filter/connections/Sample Stream._Demo Qt Video Display.video</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/laserSegmentation_filter/filters/Demo Qt Video Display/input_pins/video</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/laserSegmentation_filter/filters/Sensor Visualization</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/laserSegmentation_filter/filters/Sensor Visualization/input_pins/laser_scanner</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/laserSegmentation_filter/connections/laser._Sensor Visualization.laser_scanner</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/laserSegmentation_streaming/streaming_sources/Basler Camera</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/laserSegmentation_streaming/connections/Basler Camera.video_rgb_Filter Graph Dock.basler</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/laserSegmentation_streaming/streaming_sources/Basler Camera/output_pins/video_rgb</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/laserSegmentation_streaming/streaming_sources/Laser Scanner</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/laserSegmentation_streaming/connections/Laser Scanner.output_Filter Graph Dock.laser</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/laserSegmentation_streaming/streaming_sources/Laser Scanner/output_pins/output</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/kernel.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/reference_clock.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/signal_registry.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/media_description.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/qt_xsystem.ui_service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/log_view.ui_service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/sample_stream_tracer.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/sample_stream_trace_view.ui_service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/adtf_file_support.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/playback.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/signal_table_view.ui_service.adtf_disptb</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/signal_tree_view.ui_service.adtf_disptb</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/signal_scope_view.ui_service.adtf_disptb</name>
+          <properties/>
+        </property_set>
+      </property_sets>
+    </property_package>
+  </property_packages>
+</property_file>

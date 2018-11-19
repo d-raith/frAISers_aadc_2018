@@ -1,0 +1,44 @@
+<configuration datetime="03-Aug-2018" target="car27">
+
+  <sensor description="freiburg" target="camera basler">
+  
+    <!-- width of the image after transformation [meter] -->
+    <value name="ipm_width" value="2.5"/>
+    
+    <!-- height of the image after birdseye transformation [meter]-->
+    <value name="ipm_height" value="1.8"/>
+    
+    <!-- number of pixel per meter in image after birdseye transformation -->
+    <value name="ipm_scale" value="700"/>
+    
+    <!-- distance [meter] to shift points in street coordinates to the right -->
+    <!-- such that they have positive coordinates that can be shown in an image -->
+    <!-- if street originY is the center of the car: usually (ipm_width / 2) -->
+    <value name="ipm_street_img_offset" value="1.25"/>
+
+    <!-- src points in image coordinates (x-axis=right, y-axis=down) [pixel] -->
+    <!-- origin top left of the image-->
+    <value name="src_1x" value="752"/>
+    <value name="src_1y" value="608"/>
+    <value name="src_2x" value="627"/>
+    <value name="src_2y" value="609"/>
+    <value name="src_3x" value="550"/>
+    <value name="src_3y" value="560"/>
+    <value name="src_4x" value="683"/>
+    <value name="src_4y" value="536"/>
+
+    <!-- dst points in street coordinates (x-axis=forward, y-axis=left) [meter] -->
+    <!-- originX = front bumper of the car -->
+    <!-- originY = center of the car -->
+    <value name="dst_1x" value="0.294"/>
+    <value name="dst_1y" value="-0.210"/>
+    <value name="dst_2x" value="0.294"/>
+    <value name="dst_2y" value="-0.0"/>
+    <value name="dst_3x" value="0.588"/>
+    <value name="dst_3y" value="0.210"/>
+    <value name="dst_4x" value="0.883"/>
+    <value name="dst_4y" value="-0.210"/>
+
+  </sensor>
+  
+</configuration>

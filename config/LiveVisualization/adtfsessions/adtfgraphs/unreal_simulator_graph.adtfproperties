@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<property_file xmlns="adtf/xsd/properties">
+  <file_version>
+    <major>1</major>
+    <minor>0</minor>
+  </file_version>
+  <property_packages>
+    <property_package>
+      <name>default</name>
+      <property_sets>
+        <property_set>
+          <name>graphs/unreal_simulator_filtergraph</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/unreal_simulator_streaming_graph</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>streaming_graphs/unreal_simulator_streaming_graph/streaminggraphdock/Filter Graph Dock</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/unreal_simulator_filtergraph/filters/KeyboardRemoteFilter</name>
+          <properties>
+            <property>
+              <name>Max speed [0-100]</name>
+              <value>80.000000</value>
+              <type>tFloat32</type>
+            </property>
+            <property>
+              <name>Set max speed</name>
+              <value>true</value>
+              <type>tBool</type>
+            </property>
+          </properties>
+        </property_set>
+        <property_set>
+          <name>graphs/unreal_simulator_filtergraph/sample_streams/speed_simulator</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/unreal_simulator_filtergraph/sample_streams/steering_simulator</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/unreal_simulator_filtergraph/connections/KeyboardRemoteFilter.speed_speed_simulator.</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/unreal_simulator_filtergraph/filters/KeyboardRemoteFilter/output_pins/speed</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/unreal_simulator_filtergraph/connections/KeyboardRemoteFilter.steering_steering_simulator.</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/unreal_simulator_filtergraph/filters/KeyboardRemoteFilter/output_pins/steering</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/unreal_simulator_filtergraph/filters/Simulator Images</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/unreal_simulator_filtergraph/sample_streams/video_simulator</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/unreal_simulator_filtergraph/connections/video_simulator._Simulator Images.video</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/unreal_simulator_filtergraph/filters/Simulator Images/input_pins/video</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/unreal_simulator_filtergraph/filters/Simulator Position</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/unreal_simulator_filtergraph/sample_streams/position_simulator</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/unreal_simulator_filtergraph/connections/position_simulator._Simulator Position.simulator_position</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/unreal_simulator_filtergraph/filters/Simulator Position/input_pins/simulator_position</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/unreal_simulator_filtergraph/active_runners/thrift_timer_runner</name>
+          <properties>
+            <property>
+              <name>timer_period_micro_sec</name>
+              <value>50000</value>
+              <type>tInt64</type>
+            </property>
+          </properties>
+        </property_set>
+        <property_set>
+          <name>graphs/unreal_simulator_filtergraph/active_runners/Timer Runner</name>
+          <properties>
+            <property>
+              <name>timer_period_micro_sec</name>
+              <value>1000000</value>
+              <type>tInt64</type>
+            </property>
+          </properties>
+        </property_set>
+        <property_set>
+          <name>graphs/unreal_simulator_filtergraph/filters/WaypointTestFilter</name>
+          <properties>
+            <property>
+              <name>trigger/waypoint distance (cm)</name>
+              <value>100</value>
+              <type>tFloat64</type>
+            </property>
+            <property>
+              <name>trigger/initial x pos (cm)</name>
+              <value>1525</value>
+              <type>tFloat64</type>
+            </property>
+            <property>
+              <name>trigger/initial heading (rad)</name>
+              <value>0</value>
+              <type>tFloat64</type>
+            </property>
+            <property>
+              <name>trigger/initial y pos (cm)</name>
+              <value>-125</value>
+              <type>tFloat64</type>
+            </property>
+            <property>
+              <name>trigger/ignore stoplines</name>
+              <value>true</value>
+              <type>tBool</type>
+            </property>
+            <property>
+              <name>trigger/ignore crosswalks</name>
+              <value>true</value>
+              <type>tBool</type>
+            </property>
+            <property>
+              <name>trigger/plan route</name>
+              <value>true</value>
+              <type>tBool</type>
+            </property>
+            <property>
+              <name>trigger/goal heading (rad)</name>
+              <value>0</value>
+              <type>tFloat64</type>
+            </property>
+            <property>
+              <name>trigger/goal x pos (cm)</name>
+              <value>1650</value>
+              <type>tFloat64</type>
+            </property>
+            <property>
+              <name>trigger/goal y pos (cm)</name>
+              <value>-125</value>
+              <type>tFloat64</type>
+            </property>
+          </properties>
+        </property_set>
+        <property_set>
+          <name>graphs/unreal_simulator_filtergraph/connections/Timer Runner._WaypointTestFilter.trigger</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/unreal_simulator_filtergraph/filters/WaypointTestFilter/runners/trigger</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/unreal_simulator_filtergraph/filters/Universal Thrift Filter</name>
+          <properties>
+            <property>
+              <name>Map absolute file path (without extension)</name>
+              <value>/home/aadc/AADC/map_files/aadc_2018_finals/aadc2018-final-v004_merging</value>
+              <type>cString</type>
+            </property>
+            <property>
+              <name>Load initial map from file</name>
+              <value>false</value>
+              <type>tBool</type>
+            </property>
+            <property>
+              <name>Remote Thrift server ip</name>
+              <value>127.0.0.1</value>
+              <type>cString</type>
+            </property>
+            <property>
+              <name>Save incoming map to file</name>
+              <value>true</value>
+              <type>tBool</type>
+            </property>
+            <property>
+              <name>Send position updates to remote</name>
+              <value>false</value>
+              <type>tBool</type>
+            </property>
+            <property>
+              <name>Send position updates to remote server</name>
+              <value>false</value>
+              <type>tBool</type>
+            </property>
+            <property>
+              <name>Send map updates to remote server</name>
+              <value>false</value>
+              <type>tBool</type>
+            </property>
+            <property>
+              <name>Map logging</name>
+              <value>false</value>
+              <type>tBool</type>
+            </property>
+            <property>
+              <name>Incoming map updates via Thrift</name>
+              <value>true</value>
+              <type>tBool</type>
+            </property>
+            <property>
+              <name>Disable all thrift communication (override)</name>
+              <value>false</value>
+              <type>tBool</type>
+            </property>
+            <property>
+              <name>Enable Thrift control server</name>
+              <value>false</value>
+              <type>tBool</type>
+            </property>
+            <property>
+              <name>Car Id:</name>
+              <value>27</value>
+              <type>tInt32</type>
+            </property>
+          </properties>
+        </property_set>
+        <property_set>
+          <name>graphs/unreal_simulator_filtergraph/connections/thrift_timer_runner._Universal Thrift Filter.thriftfilter_runner</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/unreal_simulator_filtergraph/filters/Universal Thrift Filter/runners/thriftfilter_runner</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/unreal_simulator_filtergraph/connections/position_simulator._Universal Thrift Filter.position_in</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/unreal_simulator_filtergraph/filters/Universal Thrift Filter/input_pins/position_in</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/unreal_simulator_filtergraph/filters/AirSim Simulation Filter</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/unreal_simulator_filtergraph/connections/speed_simulator._AirSim Simulation Filter.speed_in</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/unreal_simulator_filtergraph/filters/AirSim Simulation Filter/input_pins/speed_in</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/unreal_simulator_filtergraph/connections/steering_simulator._AirSim Simulation Filter.steering_in</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/unreal_simulator_filtergraph/filters/AirSim Simulation Filter/input_pins/steering_in</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/unreal_simulator_filtergraph/connections/AirSim Simulation Filter.position_out_position_simulator.</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/unreal_simulator_filtergraph/filters/AirSim Simulation Filter/output_pins/position_out</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/unreal_simulator_filtergraph/connections/AirSim Simulation Filter.image_out_video_simulator.</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>graphs/unreal_simulator_filtergraph/filters/AirSim Simulation Filter/output_pins/image_out</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/kernel.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/reference_clock.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/signal_registry.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/media_description.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/qt_xsystem.ui_service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/log_view.ui_service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/signal_table_view.ui_service.adtf_disptb</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/signal_tree_view.ui_service.adtf_disptb</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/signal_scope_view.ui_service.adtf_disptb</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/adtf_file_support.service.adtf</name>
+          <properties/>
+        </property_set>
+        <property_set>
+          <name>services/playback.service.adtf</name>
+          <properties/>
+        </property_set>
+      </property_sets>
+    </property_package>
+  </property_packages>
+</property_file>

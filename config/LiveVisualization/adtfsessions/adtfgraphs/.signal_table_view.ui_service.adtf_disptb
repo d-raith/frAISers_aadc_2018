@@ -1,0 +1,38 @@
+<xml>
+ <property name="Signal Table View" value="tableview" />
+ <property name="Signal Table View.column_0_name" value="Signal" />
+ <property name="Signal Table View.column_0_show" value="true" />
+ <property name="Signal Table View.column_0_width" value="241" />
+ <property name="Signal Table View.column_1_name" value="Time" />
+ <property name="Signal Table View.column_1_show" value="true" />
+ <property name="Signal Table View.column_1_width" value="0" />
+ <property name="Signal Table View.column_2_name" value="Value" />
+ <property name="Signal Table View.column_2_show" value="true" />
+ <property name="Signal Table View.column_2_width" value="173" />
+ <property name="Signal Table View.column_3_name" value="Unit" />
+ <property name="Signal Table View.column_3_show" value="true" />
+ <property name="Signal Table View.column_3_width" value="876" />
+ <property name="Signal Table View.column_4_name" value="Raw" />
+ <property name="Signal Table View.column_4_show" value="false" />
+ <property name="Signal Table View.column_4_width" value="100" />
+ <property name="Signal Table View.column_5_name" value="Text" />
+ <property name="Signal Table View.column_5_show" value="false" />
+ <property name="Signal Table View.column_5_width" value="0" />
+ <property name="Signal Table View.signal_0_displayformat" value="1" />
+ <property name="Signal Table View.signal_0_displayname" value="live_streaming_graph/filter_graph_main/Sample Stream_1/f32Value" />
+ <property name="Signal Table View.signal_0_name" value="live_streaming_graph/filter_graph_main/Sample Stream_1/f32Value" />
+ <property name="Signal Table View.signal_0_unit" value="" />
+ <property name="Signal Table View.signal_1_displayformat" value="1" />
+ <property name="Signal Table View.signal_1_displayname" value="live_streaming_graph/speed_out/f32Value" />
+ <property name="Signal Table View.signal_1_name" value="live_streaming_graph/speed_out/f32Value" />
+ <property name="Signal Table View.signal_1_unit" value="" />
+ <property name="Signal Table View.signal_2_displayformat" value="1" />
+ <property name="Signal Table View.signal_2_displayname" value="live_streaming_graph/filter_graph_main/control/speed_out_ctrl/f32Value" />
+ <property name="Signal Table View.signal_2_name" value="live_streaming_graph/filter_graph_main/control/speed_out_ctrl/f32Value" />
+ <property name="Signal Table View.signal_2_unit" value="" />
+ <property name="Signal Table View.signal_3_displayformat" value="1" />
+ <property name="Signal Table View.signal_3_displayname" value="f32Value" />
+ <property name="Signal Table View.signal_3_name" value="live_streaming_graph/steering_out/f32Value" />
+ <property name="Signal Table View.signal_3_unit" value="" />
+ <property name="Signal Table View.signal_count" value="4" />
+</xml>
