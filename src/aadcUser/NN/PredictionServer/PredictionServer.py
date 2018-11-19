@@ -3,11 +3,6 @@
 *******************************************************************************
   Audi Autonomous Driving Cup 2018
   Team frAIsers
-  AUTHOR: Fabien Jenne
-  
-  Python script for creating a Thrift server and receiving images from
-  the car.
-
 *******************************************************************************
 '''
 
@@ -46,15 +41,7 @@ from thrift.transport import TSocket
 from thrift.transport import TTransport
 from thrift.protocol import TBinaryProtocol
 from thrift.server import TServer
-
-# includes for segmentation net
-# import importlib.util
-# spec = importlib.util.spec_from_file_location("segmentation", "/home/aadc/AADC/src/aadcUser/non-adtf-sources/segmentation/segmentation_main.py")
-# segmentation = importlib.util.module_from_spec(spec)
-# spec.loader.exec_module(segmentation)
 import sys
-#sys.path.append('/home/aadc/AADC/src/aadcUser/non-adtf-sources/segmentation/')
-#from segmentation_main import adtf_inference, adtf_network_init
 
 
 """ variables """
@@ -88,8 +75,6 @@ def initModelRenamed(model, weights_path, to_rename, rename):
     model_dict.update(weights_changed)
     model.load_state_dict(model_dict)
 
-
-""" implementing the Thrift server """
 class NNCommHandler():
     def __init__(self):
         self.log = {}
@@ -191,15 +176,6 @@ def adtf_network_init():
     net = net.to(device)
     net = torch.nn.DataParallel(net)
     initModelRenamed(net, '/home/aadc/AADC/src/aadcUser/NN/PredictionServer/trained_models/erfnet_best_seg_reg_2.pth.tar', 'module.features.', 'module.')
-    # initModelRenamed(net, '/home/aadc/AADC/src/aadcUser/NN/PredictionServer/trained_models/erfnet_best_seg_reg.pth.tar', 'module.features.', 'module.')
-    #net.load_state_dict(torch.load('/home/aadc/AADC/src/aadcUser/NN/PredictionServer/trained_models/best_seg_reg.pth.tar', map_location=lambda storage, location: storage.cuda(0))['state_dict'])
-   # net.load_state_dict(torch.load('/home/aadc/AADC/src/aadcUser/NN/PredictionServer/trained_models/erfnet_finetuned_mabyovertuned.tar', map_location=lambda storage, location: storage.cuda(0))['state_dict']) 
-    #net.load_state_dict(torch.load('/home/aadc/AADC/src/aadcUser/NN/PredictionServer/trained_models/erfnet_cluster_johan.tar', map_location=lambda storage, location: storage.cuda(0))['state_dict'])
-    # net.load_state_dict(torch.load('/home/aadc/AADC/src/aadcUser/NN/PredictionServer/trained_models/erfnet_11_allrealdata.pth.tar')['state_dict'])
-    # net.load_state_dict(torch.load('/home/aadc/AADC/src/aadcUser/NN/PredictionServer/trained_models/erfnet_simulation.pth.tar')['state_dict'])
-    # net.load_state_dict(torch.load('/home/aadc/Desktop/d4dl-model/snapshot_enet__epoch150.pt'))    
-    #net.load_state_dict(torch.load('/home/aadc/Desktop/d4dl-model/fcn32s2_s26_threelane.pt'))
-    #net.load_state_dict(torch.load('/home/habibien/AADC2018/modelsave/ENet-cityscape'))
 
     net.eval()
     print("network ready")
@@ -209,20 +185,11 @@ def adtf_inference(image):
     global net
     global device
     global color_coder
-    # run inference on net
-
-    # image_prepared, dim = prep_image(image, detect_model.inp_dim)
-    # image_prepared = image_prepared.cuda()
-    # im_dim_list = [dim]
-    # im_dim_list = torch.FloatTensor(im_dim_list).repeat(1, 2).cuda()
-
-    # print('image.shape', image.shape)  # shape=(height, width, channels), values=[0, 255]
     single_image_tensor = torch.from_numpy(np.moveaxis(image, 2, 0) / 255.0)
     single_image_tensor = single_image_tensor.to(torch.float32)
     single_image_tensor = single_image_tensor.unsqueeze(0)
     # NB: Asserts a batch size of 1 atm
-    mean = [123.7164293/255, 124.40157681/255, 119.43845371/255] # /home/aadc/AADC/src/aadcUser/NN/PredictionServer/trained_models/erfnet_11_allrealdata.pth.tar
-    # mean = [123.68173826/255, 124.31097714/255, 119.26626476/255]   # 'trained_models/simulation.pth.tar'
+    mean = [123.7164293/255, 124.40157681/255, 119.43845371/255]
     with torch.no_grad():
         single_image_tensor = single_image_tensor.to(device)
         single_image_tensor[:, 0, :, :] -= mean[0]
@@ -247,14 +214,6 @@ def adtf_inference(image):
             cv2.imshow("dt", cv2.cvtColor(color_reg, cv2.COLOR_RGB2BGR))
             cv2.imshow("seg", cv2.cvtColor(color_seg, cv2.COLOR_RGB2BGR))
             cv2.waitKey(10)
-
-  	# detect_output = detect_model.detect(image_prepared, im_dim_list)
-        # if detect_output is not None:
-        #     detect_image = detect_model.visualize_outputs(detect_output, image)
-
-        #     # cv2.imshow('detect_image', detect_image)
-        #     # cv2.waitKey(10)
-
         cv2.normalize(reg_cv, reg_cv, 0, 255, cv2.NORM_MINMAX)
         reg_cv = reg_cv.astype(np.uint8)
         seg_cv = seg_cv.astype(np.uint8)
@@ -265,9 +224,6 @@ def adtf_inference(image):
         no_channels = 2
         # result = cv2.line(result, (int(result.shape[1] / 2), 0), (int(result.shape[1] / 2), result.shape[0] - 1), (255, 0, 0))
         return no_channels, result  # print("result.shape", result.shape)  # shape=(height, width, channels), values=[0, 255]
-
-
-""" creates a Thrift server on the local machine """
 def createNNServer(port):
     try:
         print(bcolors.OKBLUE + 'NNServer: trying to create NNServer on port {}'.format(port))
@@ -283,8 +239,6 @@ def createNNServer(port):
     except:
         print('NNServer: could not create NNServer!' + bcolors.ENDC)
 
-
-""" explicitly start the NNServer """
 def startNNServer(server_handle):
     print(bcolors.OKBLUE + 'NNServer: starting to serve...' + bcolors.ENDC)
     try:
