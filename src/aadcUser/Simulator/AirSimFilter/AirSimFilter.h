@@ -2,49 +2,41 @@
 /******************************************************************************
  * Audi Autonomous Driving Cup 2018
  * Team frAIsers
- * AUTHOR: Fabien Jenne
- *
- * AirSim filter implementation
- *
 ******************************************************************************/
 
 #pragma once
 
 #include <math.h>
-#include <iostream>                             // AirSim
+#include <iostream>          
 #include <string>
 #include <vector>
 #include <cstdlib>
 #include <sstream>
-#include <thread>                               // NOLINT
+#include <thread>              
 #include <atomic>
 #include <future>
-#include <mutex>                                // NOLINT
-#include <chrono>                               // NOLINT / AirSim
+#include <mutex>                         
+#include <chrono>                          
 #include <opencv2/opencv.hpp>
 
 #include "stdafx.h"
-
-// AirSim
 #include "/opt/AirSim2/AirLib/include/common/common_utils/StrictMode.hpp"
 STRICT_MODE_OFF
 #ifndef RPCLIB_MSGPACK
 #define RPCLIB_MSGPACK clmdep_msgpack
-#endif  // !RPCLIB_MSGPACK
+#endif
 #include "rpc/rpc_error.h"
 STRICT_MODE_ON
 #include "vehicles/car/api/CarRpcLibClient.hpp"
 #include "common/common_utils/FileSystem.hpp"
-// end AirSim
 
 
-using namespace cv;                             // NOLINT
-using namespace msr::airlib;                    // NOLINT
+using namespace cv;                         
+using namespace msr::airlib;           
 
 typedef ImageCaptureBase::ImageRequest ImageRequest;
 typedef ImageCaptureBase::ImageResponse ImageResponse;
 typedef ImageCaptureBase::ImageType ImageType;
-// typedef common_utils::FileSystem FileSystem;
 
 #define CID_AIRSIM_FILTER "airsim_simulator.communication.adtf.cid"
 #define LABEL_AIRSIM_FILTER "AirSim Simulation Filter"
@@ -81,19 +73,14 @@ class AirSimFilter : public adtf::filter::ant::cConfigurableFilter {
 
     double control_value_speed;
     double control_value_steering;
-    // AirSim
     msr::airlib::CarRpcLibClient* _airsim_client = NULL;
 
-    // AirSim
     std::string airsim_server_ip = "10.8.105.148";
     uint16_t airsim_server_port = 41451;
     float airsim_connection_timeout = 60;
     bool airsim_client_connected = false;
 
-    // Media descriptions
-    //   tPosition
     cPinWriter m_oWriterPosition;
-    /*! Media Descriptions. */
     struct tPositionId {
         tSize x;
         tSize y;
@@ -101,49 +88,34 @@ class AirSimFilter : public adtf::filter::ant::cConfigurableFilter {
         tSize speed;
         tSize heading;
     } m_ddlPositionId;
-    /*! The tPosition data sample factory */
     adtf::mediadescription::cSampleCodecFactory m_PositionSampleFactory;
-
-    //   Speed/Steering
     cPinReader m_oReaderSpeed;
     cPinReader m_oReaderSteering;
     struct tSignalValueId {
         tSize timeStamp;
         tSize value;
     } m_ddlSignalValueId;
-    /*! The tSignaValue data sample factory */
     adtf::mediadescription::cSampleCodecFactory m_SignalValueSampleFactory;
-
-    //   Images
     cPinWriter m_oWriterImage;
     adtf::streaming::tStreamImageFormat m_sImageFormat;
-
-    // Threading
     std::thread airsim_image_thread;
     std::atomic<bool> image_thread_running;
 
  public:
-    // implement cFilterBase (implements cFilterLevelmachine)
     tResult Init(adtf::streaming::ant::cFilterBase::tInitStage eStage);
     tResult Start();
     tResult Stop();
     tResult Shutdown(adtf::streaming::ant::cFilterBase::tInitStage eStage);
     tResult RunTrigger(tTimeStamp tmTimeofActivation);
-
-    // AirSim client
     bool createAirSimClient();
 
  protected:
-    // Map
     tResult setCarPoseFrom_tPosition();
-    // ADTF
     tResult writeImageToPin(const cv::Mat& outputImage);
     tResult sendPositionStruct(
         const tTimeStamp& timeOfWriting, const tFloat32& f32X, const tFloat32& f32Y,
         const tFloat32& f32Radius, const tFloat32& f32Heading, const tFloat32& f32Speed);
     tResult readControlInputPins();
-
-    // AirSim
     cv::Mat getAirSimImages();
     void writeNewestAirSimImage(tTimeStamp tmTimeOfImageUpdate);
     tResult writeNewestAirSimPosition();
