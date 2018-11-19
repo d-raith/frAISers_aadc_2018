@@ -2,10 +2,6 @@
 /******************************************************************************
  * Audi Autonomous Driving Cup 2018
  * Team frAIsers
- * AUTHOR: Fabien Jenne
- * 
- * Neural Network Thrift filter implementation
- * 
 ******************************************************************************/
 
 #include "NNThriftFilter.h"
@@ -24,15 +20,7 @@ void launchPredictionServer() {
     LOG_INFO("Launch prediction server exited with exit_code %i", exit_code);
     std::cout << "Launch prediction server exited with exit_code " << exit_code << std::endl;
 }
-
-// ____________________________________________________________________________
-/* ADTF filter config */
-
 ADTF_PLUGIN(LABEL_NN_THRIFT_FILTER, NNThriftFilter);
-
-// ____________________________________________________________________________
-/* implement the class */
-
 NNThriftFilter::NNThriftFilter() : \
     m_oRunnable([this](tTimeStamp tmTime) -> tResult {return RunTrigger(tmTime); }) {
     RegisterPropertyVariable("eneableConsoleOutput", m_propEnableConsoleOutput);
@@ -46,62 +34,38 @@ NNThriftFilter::~NNThriftFilter() {
     // delete _thrift_car_server;
     // delete _thrift_nn_client;
 }
-
-/* this function is triggered by the Runnable */
 tResult NNThriftFilter::RunTrigger(tTimeStamp tmTimeOfActivation) {
     if (!is_connected_to_nn_server) {
         LOG_WARNING("NNThriftFilter: not connected to NN server!");
         is_connected_to_nn_server = connectToNNServer();
         if (!is_connected_to_nn_server) RETURN_NOERROR;
     }
-    // LOG_INFO("NNThriftFilter: sending NNImage");
-
-    // vStopWatch watch(true, false);
-
     tResult status =  runNNPipeline();
-
-    // watch.print_measurement("runNNPipeline");
     return status;
 }
-
-// ____________________________________________________________________________
-/* implement cFilterLevelmachine */
-
 tResult NNThriftFilter::Init(tInitStage eStage) {
     RETURN_IF_FAILED(cFilterBase::Init(eStage));
     if (eStage == tInitStage::StageFirst) {
-        // clock
         _runtime->GetObject(m_pClock);
         if (static_cast<bool>(launch_nn_server)) {
             std::thread launchThread(launchPredictionServer);
             launchThread.detach();
         }
-        // register all pins
-        //   set stream type
         m_sImageFormat.m_strFormatName = ADTF_IMAGE_FORMAT(RGB_24);
         const adtf::ucom::object_ptr<IStreamType> pType = \
             adtf::ucom::make_object_ptr<cStreamType>(stream_meta_type_image());
         set_stream_type_image_format(*pType, m_sImageFormat);
-        //   input
         RETURN_IF_FAILED(create_pin(*this, m_oReaderImage, "image_in", pType));
-        //   output
         RETURN_IF_FAILED(create_pin(*this, m_oWriterImage, "image_out", pType));
-
-        //   link input image size to output
         m_oReaderImage.SetAcceptTypeCallback(
             [this](const adtf::ucom::ant::iobject_ptr< \
             const adtf::streaming::ant::IStreamType>& pType) -> tResult {
                 return ChangeType(m_oReaderImage, m_sImageFormat, *pType.Get(), m_oWriterImage);
             });
-
-
-        //   register the runner
         RETURN_IF_FAILED(RegisterRunner("nn_thriftfilter_runner", m_oRunnable));
-        //   link the runner to the input pin
         RETURN_IF_FAILED(create_inner_pipe(*this, { "image_in", "nn_thriftfilter_runner" }));
 
         if (!run_network_locally) {
-            // create the Thrift client
             stdcxx::shared_ptr<TTransport> socket(
                 new TSocket(thrift_nn_server, thrift_nn_server_port));
             _thrift_transport_client = stdcxx::shared_ptr<TTransport>(
@@ -140,11 +104,6 @@ tResult NNThriftFilter::Shutdown(tInitStage eStage) {
     LOG_INFO("NNThriftFilter: ShutdownStage");
     RETURN_NOERROR;
 }
-
-// ____________________________________________________________________________
-/* NNThriftFilter: functions */
-
-/* function which implements the whole filter loop */
 tResult NNThriftFilter::runNNPipeline() {
     cv::Mat image_input = cv::Mat();
     tResult status = readInputPin(&image_input);
@@ -152,9 +111,6 @@ tResult NNThriftFilter::runNNPipeline() {
         // LOG_INFO("Could not read input pin.");
         RETURN_ERROR(status);
     }
-
-
-    // get the network output
     cv::Mat image_output;
     if (!run_network_locally) {
         // LOG_INFO("createThriftImage");
@@ -175,8 +131,6 @@ tResult NNThriftFilter::runNNPipeline() {
     }
     RETURN_NOERROR;
 }
-
-/* function to read input images from the streaming graph */
 tResult NNThriftFilter::readInputPin(cv::Mat* image) {
     object_ptr<const ISample> pReadSample;
     bool found = false;
@@ -184,10 +138,6 @@ tResult NNThriftFilter::readInputPin(cv::Mat* image) {
         object_ptr_shared_locked<const ISampleBuffer> pReadBuffer;
         // lock read buffer
         if (IS_OK(pReadSample->Lock(pReadBuffer))) {
-            // create an opencv matrix from the media sample buffer
-            // LOG_INFO("m_sImageFormat.m_ui32Width=%i", m_sImageFormat.m_ui32Width);
-            // LOG_INFO("m_sImageFormat.m_ui32Height=%i", m_sImageFormat.m_ui32Height);
-
             *image = Mat(cv::Size(m_sImageFormat.m_ui32Width, m_sImageFormat.m_ui32Height),
                                  CV_8UC3,
                                  const_cast<unsigned char*>(
@@ -201,8 +151,6 @@ tResult NNThriftFilter::readInputPin(cv::Mat* image) {
         RETURN_NOERROR;
     }
 }
-
-/* function to write output images to the streaming graph */
 tResult NNThriftFilter::writeOutputPin(const Mat& outputImage) {
     if (!outputImage.empty()) {
         // update output format if matrix size does not fit to
@@ -215,11 +163,6 @@ tResult NNThriftFilter::writeOutputPin(const Mat& outputImage) {
     }
     RETURN_NOERROR;
 }
-
-// ____________________________________________________________________________
-/* NNThriftFilter: Thrift client functions */
-
-/* function to request a NN prediction on the NN server */
 nn_thrift::NNImage NNThriftFilter::getNNOutput(const nn_thrift::NNImage& image_input) {
     nn_thrift::NNImage prediction = nn_thrift::NNImage();
     try {
@@ -229,8 +172,6 @@ nn_thrift::NNImage NNThriftFilter::getNNOutput(const nn_thrift::NNImage& image_i
     }
     return prediction;
 }
-
-/* function to create a nn_thrift::NNImage from cv::Mat */
 nn_thrift::NNImage NNThriftFilter::createThriftNNImage(const cv::Mat& image_in) {
     CV_Assert(image_in.depth() == CV_8U);
     int rows = image_in.rows;
@@ -266,8 +207,6 @@ nn_thrift::NNImage NNThriftFilter::createThriftNNImage(const cv::Mat& image_in) 
 
     return image_thrift;
 }
-
-/* function to create a cv::Mat from nn_thrift::NNImage */
 cv::Mat NNThriftFilter::createCVMatImage(const nn_thrift::NNImage& image_in) {
     cv::Mat image_cv = cv::Mat(cv::Size(image_in.width, image_in.height), CV_8UC3);
     const std::string& image_bytes = image_in.bytes;
@@ -310,10 +249,6 @@ cv::Mat NNThriftFilter::createCVMatImage(const nn_thrift::NNImage& image_in) {
         "output size h: %d | w: %d", image_cv.size().height, image_cv.size().width));
     return image_cv;
 }
-// ____________________________________________________________________________
-/* Thrift maintanance */
-
-/* function to check if NNThriftFilter is connected to the remote server */
 bool NNThriftFilter::connectToNNServer() {
     if (!is_connected_to_nn_server) {
         try {
@@ -341,93 +276,3 @@ bool NNThriftFilter::connectToNNServer() {
     return is_connected_to_nn_server;
 }
 
-
-// NNThriftFilter::seg_network::seg_network():_use_cuda(false), _device(torch::kCPU)
-// {
-//     std::string model_path = "/home/vertensj/code/raiscar_map/segnet/cpp_segnet_model.pt";
-
-//     torch::DeviceType device_type;
-//     if (torch::cuda::is_available()) {
-//         std::cout << "CUDA available! Inference on GPU" << std::endl;
-//         device_type = torch::kCUDA;
-//         _use_cuda = true;
-//     } else {
-//         std::cout << "Inference on CPU" << std::endl;
-//         device_type = torch::kCPU;
-//     }
-//     //_device.set_index(device_type);
-//     _device = torch::Device(device_type);
-
-
-//     // Deserialize the ScriptModule from a file using torch::jit::load().
-//     _module = torch::jit::load(model_path);
-//     if (_use_cuda)
-//         _module->to(_device);
-
-//     assert(_module != nullptr);
-//     std::cout << "loaded network\n";
-//     float _dataset_mean[3];
-//     _dataset_mean[0] = 123.68173826f/255.0f;
-//     _dataset_mean[0] = 124.31097714f/255.0f;
-//     _dataset_mean[0] = 119.26626476f/255.0f;
-// }
-
-// torch::Tensor NNThriftFilter::seg_network::preprocess(cv::Mat rgb) {
-//     cv::resize(rgb, rgb, cv::Size(640, 88));
-//     // cv::cvtColor(rgb, rgb, cv::COLOR_BGR2RGB);
-//     unsigned char tensor_mem[1*3*640*88];
-//     int width = rgb.cols;
-//     int height = rgb.rows;
-//     int step = rgb.step;
-//     int total_channel_num = width*height;
-//     for (int y=0; y < height; y++) {
-//         for (int x=0; x < width; x++) {
-//             tensor_mem[0*total_channel_num + y* width+ x] =
-//                 rgb.data[y*step+x*3+0] - _dataset_mean[0];
-//             tensor_mem[1*total_channel_num + y* width+ x] =
-//                 rgb.data[y*step+x*3+1] - _dataset_mean[1];
-//             tensor_mem[2*total_channel_num + y* width+ x] =
-//                 rgb.data[y*step+x*3+2] - _dataset_mean[2];
-//         }
-//     }
-
-//     at::Tensor tensor_image = torch::from_blob(
-//         tensor_mem, {1, 3, rgb.rows, rgb.cols}, at::kByte).to(at::kFloat) / 255.0;
-
-//     return tensor_image;
-// }
-
-// std::pair<cv::Mat, cv::Mat> NNThriftFilter::seg_network::infer(torch::Tensor tensor_image) {
-//     std::vector<torch::jit::IValue> inputs;
-//     if (_use_cuda) {
-//         inputs.push_back(tensor_image.to(_device));
-//     } else {
-//         inputs.push_back(tensor_image.to(_device));
-//     }
-
-//     auto outputs = _module->forward(inputs).toTuple();
-//     auto segmentation = outputs->elements()[0].toTensor();
-//     auto regression = outputs->elements()[1].toTensor();
-
-//     //std::cout << "Segmentation size: " << segmentation.size(0) << "/" << segmentation.size(1)
-//         // << "/" << segmentation.size(2) << "/" << segmentation.size(3) << std::endl;
-//     //std::cout << "Regression size: " << regression.size(0) << "/" << regression.size(1) 
-//         // << "/" << regression.size(2) << "/" << regression.size(3) << std::endl;
-
-//     cv::Size sizes;
-//     sizes.height = 88;
-//     sizes.width = 640;
-
-//     cv::Mat output_reg(sizes, CV_32FC1, regression.cpu().data<float>());
-//     output_reg.convertTo(output_reg, CV_8UC1);
-
-//     at::Tensor seg_argmax = at::argmax(segmentation, 1).to(at::kByte);
-//     cv::Mat seg_argmax_cv(sizes, CV_8UC1, seg_argmax.cpu().data<unsigned char>());
-
-//     //    cv::Mat img_color;
-//     //    cv::applyColorMap(output_reg, img_color, cv::COLORMAP_JET);
-
-//     inputs.clear();
-
-//     return std::pair<cv::Mat, cv::Mat>(output_reg.clone(), seg_argmax_cv.clone());
-// }
